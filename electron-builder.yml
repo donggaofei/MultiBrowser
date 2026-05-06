@@ -11,6 +11,7 @@ files:
   - "!{tsconfig,tsconfig.node,tsconfig.web}.json"
   - "!{.eslintrc.cjs,.prettierrc,.prettierignore,.gitignore,.editorconfig}"
 asar: true
+publish: null
 win:
   target:
     - nsis
