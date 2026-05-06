@@ -1,0 +1,237 @@
+:root {
+  --bg: #1f2127;
+  --bg-elev: #2a2d36;
+  --bg-active: #3a3f4b;
+  --border: #3a3f4b;
+  --text: #e6e6e6;
+  --text-dim: #9aa0aa;
+  --primary: #4c8bf5;
+  --danger: #e26d6d;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Microsoft YaHei", sans-serif;
+  font-size: 13px;
+  overflow: hidden;
+  user-select: none;
+}
+
+#chrome {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+#tab-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 40px;
+  padding: 0 8px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+#tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 12px;
+  background: var(--bg-elev);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--text-dim);
+  max-width: 200px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.tab:hover { background: var(--bg-active); color: var(--text); }
+.tab.active {
+  background: var(--bg-active);
+  color: var(--text);
+  border-color: var(--primary);
+}
+.tab .tab-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+}
+.tab .tab-spinner {
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid var(--text-dim);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+#add-tab {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+#add-tab:hover { background: var(--bg-elev); color: var(--text); }
+
+#address-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 48px;
+  padding: 0 12px;
+  border-top: 1px solid var(--border);
+}
+
+.nav-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.nav-btn:hover:not(:disabled) { background: var(--bg-elev); }
+.nav-btn:disabled { color: var(--text-dim); cursor: default; opacity: 0.4; }
+
+#url {
+  flex: 1;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--bg-elev);
+  color: var(--text);
+  font-size: 12px;
+  user-select: text;
+}
+#url:focus { outline: 1px solid var(--primary); border-color: var(--primary); }
+
+#loading-indicator {
+  font-size: 11px;
+  color: var(--text-dim);
+  padding: 0 6px;
+}
+
+#empty-state {
+  position: fixed;
+  top: 88px; left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.empty-card { text-align: center; max-width: 400px; }
+.empty-card h1 { font-size: 24px; margin: 0 0 8px; }
+.empty-card p { color: var(--text-dim); margin: 0 0 20px; }
+.empty-card button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+}
+.empty-card button:hover { filter: brightness(1.1); }
+
+#account-dialog {
+  border: none;
+  border-radius: 8px;
+  background: var(--bg-elev);
+  color: var(--text);
+  padding: 20px;
+  width: 360px;
+}
+#account-dialog::backdrop { background: rgba(0, 0, 0, 0.5); }
+#account-dialog h3 { margin: 0 0 16px; font-size: 14px; font-weight: 600; }
+#account-dialog label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 12px;
+}
+#account-dialog label > span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--text-dim);
+}
+#account-dialog input {
+  width: 100%;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 12px;
+}
+#account-dialog input:focus { outline: 1px solid var(--primary); border-color: var(--primary); }
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+.dialog-actions button {
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text);
+  font-size: 12px;
+  cursor: pointer;
+}
+.dialog-actions button.primary {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+#tab-context-menu {
+  position: fixed;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4px 0;
+  min-width: 120px;
+  font-size: 12px;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+#tab-context-menu .menu-item {
+  padding: 6px 14px;
+  cursor: pointer;
+  color: var(--text);
+}
+#tab-context-menu .menu-item:hover { background: var(--bg-active); }
+#tab-context-menu .menu-item.danger { color: var(--danger); }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }

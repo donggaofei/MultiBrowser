@@ -1,0 +1,26 @@
+appId: com.alan.multibrowser
+productName: MultiBrowser
+copyright: Copyright (c) 2026 Alan Sanchez
+directories:
+  buildResources: resources
+  output: dist
+files:
+  - "!**/.vscode/*"
+  - "!src/*"
+  - "!electron.vite.config.{ts,js,mjs,cjs}"
+  - "!{tsconfig,tsconfig.node,tsconfig.web}.json"
+  - "!{.eslintrc.cjs,.prettierrc,.prettierignore,.gitignore,.editorconfig}"
+asar: true
+win:
+  target:
+    - nsis
+  artifactName: ${productName}-${version}-setup.${ext}
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  shortcutName: ${productName}
+mac:
+  target: dmg
+  artifactName: ${productName}-${version}.${ext}
+  category: public.app-category.productivity

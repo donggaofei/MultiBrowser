@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'" />
+    <title>MultiBrowser</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="chrome">
+      <div id="tab-bar">
+        <div id="tabs"></div>
+        <button id="add-tab" title="新建账号" type="button">+</button>
+      </div>
+      <div id="address-bar">
+        <button class="nav-btn" id="back" title="后退" type="button">‹</button>
+        <button class="nav-btn" id="forward" title="前进" type="button">›</button>
+        <button class="nav-btn" id="reload" title="刷新" type="button">⟳</button>
+        <input id="url" type="text" spellcheck="false" placeholder="搜索或输入网址" />
+        <span id="loading-indicator" hidden>加载中…</span>
+        <button class="nav-btn" id="settings" title="设置数据存放位置" type="button">⚙</button>
+      </div>
+    </div>
+    <div id="empty-state">
+      <div class="empty-card">
+        <h1>MultiBrowser</h1>
+        <p>每个账号一个完全独立的浏览器会话，cookie 互不干扰。</p>
+        <button id="empty-add" type="button">+ 新建第一个账号</button>
+      </div>
+    </div>
+    <dialog id="account-dialog">
+      <form method="dialog">
+        <h3 id="dialog-title">新建账号</h3>
+        <label>
+          <span>名称</span>
+          <input id="dialog-name" type="text" required maxlength="40" autofocus />
+        </label>
+        <label>
+          <span>起始网址</span>
+          <input id="dialog-url" type="text" />
+        </label>
+        <div class="dialog-actions">
+          <button value="cancel" type="submit">取消</button>
+          <button value="ok" type="submit" id="dialog-ok" class="primary">确定</button>
+        </div>
+      </form>
+    </dialog>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>
